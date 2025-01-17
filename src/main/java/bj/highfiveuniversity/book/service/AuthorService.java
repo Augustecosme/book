@@ -22,4 +22,13 @@ public class AuthorService {
     public void deleteAuthor(Long id){
         auteurRepository.deleteById(id);
     }
+
+    public Author updateAuthor(Long id, Author auteur){
+        return auteurRepository.findById( id).map(el -> {
+            el.setNom(auteur.getNom());
+            el.setPrenom(auteur.getPrenom());
+            el.setNationnality(auteur.getNationnality());
+            return auteurRepository.save(el);
+        }).orElseThrow(()->new RuntimeExcepion("pas d'auteur avec cet Id : " + id))
+    }
 }
