@@ -3,6 +3,7 @@ package bj.highfiveuniversity.book.model;
 import java.time.LocalDate;
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -54,11 +55,13 @@ public class Book {
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
+    @Column(nullable = true)
 
     public LocalDate getPublished_at() {
         return published_at;
     }
-
+    @Column(nullable = true)
+    
     public void setPublished_at(LocalDate published_at) {
         this.published_at = published_at;
     }
