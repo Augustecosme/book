@@ -29,6 +29,6 @@ public class AuthorService {
             el.setPrenom(auteur.getPrenom());
             el.setNationnality(auteur.getNationnality());
             return auteurRepository.save(el);
-        }).orElseThrow(()->new RuntimeExcepion("pas d'auteur avec cet Id : " + id))
+        }).orElseThrow(()->new RuntimeException("pas d'auteur avec cet Id : " + id));
     }
 }
