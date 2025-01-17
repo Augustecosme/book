@@ -25,7 +25,7 @@ public class Author {
 
     private String nationnality;
 
-    @ManyToMany(mappedBy = "auteur")
+    @ManyToMany(mappedBy = "auteurs")
     private Set<Book>livres;
 
     //Getter et Setter

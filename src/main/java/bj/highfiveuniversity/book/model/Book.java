@@ -27,7 +27,7 @@ public class Book {
 
     private LocalDate published_at;
     
-    @ManyToMany(mappedBy = "auteurs")
+    @ManyToMany
     @JoinTable(
         name = "auteur_livre",
         joinColumns = @JoinColumn(name = "Livres_id"),
