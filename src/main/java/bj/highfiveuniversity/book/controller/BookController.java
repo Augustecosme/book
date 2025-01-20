@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import bj.highfiveuniversity.book.DTO.BookDTO;
 import bj.highfiveuniversity.book.model.Book;
 import bj.highfiveuniversity.book.service.BookService;
-
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -32,8 +32,8 @@ public class BookController {
     }
 
     @GetMapping("/allBook")
-    public List<Book> allBook(Book livre){
-        return bookService.allBook(livre); 
+    public List<BookDTO> allBook(Book livre){
+        return bookService.allBook(); 
     }
     
     @DeleteMapping("/{id}")
@@ -46,10 +46,16 @@ public class BookController {
         return bookService.updateBook(id, livre);
     }
 
+    @GetMapping("/{id}")
+    public BookDTO book(@PathVariable Long id) {
+        return bookService.book(id);
+    }
+
     @GetMapping("search")
     public String searchBooks(@RequestParam String author, @RequestParam(required = false) String year) {
         return "auteur : " + author + "anne : " + year  ;
     }
+
     
 
     

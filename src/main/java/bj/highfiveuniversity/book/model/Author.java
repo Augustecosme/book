@@ -3,6 +3,7 @@ package bj.highfiveuniversity.book.model;
 
 import java.util.Set;
 
+import bj.highfiveuniversity.book.DTO.AuthorDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -56,5 +57,9 @@ public class Author {
 
     public void setNationnality(String nationnality) {
         this.nationnality = nationnality;
+    }
+
+    public AuthorDTO orElseThrow() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

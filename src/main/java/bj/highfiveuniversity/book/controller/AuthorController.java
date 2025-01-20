@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import bj.highfiveuniversity.book.DTO.AuthorDTO;
 import bj.highfiveuniversity.book.model.Author;
 import bj.highfiveuniversity.book.service.AuthorService;
 
@@ -23,23 +24,28 @@ public class AuthorController {
     private AuthorService authorService;
 
     @PostMapping("/addAuthor")
-    public Author addAuthor( @RequestBody Author auteur){
+    public Author addAuthor(@RequestBody Author auteur) {
         return authorService.addAuthor(auteur);
     }
 
     @GetMapping("/allAuthor")
-    public List<Author> allAuthor( Author auteur){
-        return authorService.allAuthor(auteur);
+    public List<AuthorDTO> allAuthor(Author auteur) {
+        return authorService.allAuthor();
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAuthor(@PathVariable Long id){
-         authorService.deleteAuthor(id);
+    public void deleteAuthor(@PathVariable Long id) {
+        authorService.deleteAuthor(id);
     }
-    
+
     @PutMapping("/update/{id}")
-    public Author updateAuthor(@PathVariable Long id, @RequestBody Author auteur){
+    public Author updateAuthor(@PathVariable Long id, @RequestBody Author auteur) {
         return authorService.updateAuthor(id, auteur);
     }
-    
+
+    @GetMapping("/{id}")
+    public AuthorDTO author(@PathVariable Long id) {
+        return authorService.author(id);
+    }
+
 }
