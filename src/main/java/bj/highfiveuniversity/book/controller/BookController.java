@@ -3,6 +3,7 @@ package bj.highfiveuniversity.book.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import bj.highfiveuniversity.book.DTO.BookDTO;
+import bj.highfiveuniversity.book.DTO.CreateBookDTO;
 import bj.highfiveuniversity.book.model.Book;
 import bj.highfiveuniversity.book.service.BookService;
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -27,9 +30,20 @@ public class BookController {
     private BookService bookService;
 
     @PostMapping("/addBook")
-    public Book addBook(@RequestBody Book livre){
-        return bookService.addBook(livre);
+    public ResponseEntity<Object> addBook(@RequestBody @Valid CreateBookDTO livre){
+        Book book = new Book();
+        book.setTitle(livre.getTitle());
+        book.setIsbn(livre.getIsbn());
+        book.setPublished_at(livre.getPublished_at());
+
+        bookService.addBook(book);
+        return ResponseEntity.ok("Livre ajouté avec succès.");
     }
+
+    // @PostMapping("/addBook")
+    // public Book addBook(@RequestBody Book livre){
+    //     return bookService.addBook(livre);
+    // }
 
     @GetMapping("/allBook")
     public List<BookDTO> allBook(Book livre){
